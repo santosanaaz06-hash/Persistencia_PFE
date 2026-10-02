@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persistencia PFE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-left">
+            <h1>Persistencia PFE</h1>
+            <span class="header-sub">geolocation · localStorage · drag &amp; drop</span>
+        </div>
+        <div class="status" id="status">
+            <span class="status-dot"></span>
+            <span id="statusTexto">aguardando</span>
+        </div>
+    </header>
+
+    <main class="layout">
+
+        <section class="painel painel-mapa">
+            <div class="painel-topo">
+                <span class="painel-titulo">mapa</span>
+                <button id="btnAtualizar" class="btn">atualizar</button>
+            </div>
+            <div id="map"></div>
+        </section>
+
+        <aside class="coluna">
+
+            <section class="painel">
+                <span class="painel-titulo">coordenadas</span>
+                <div class="coords">
+                    <div class="coord">
+                        <span class="coord-label">lat</span>
+                        <span class="coord-valor" id="lat">—</span>
+                    </div>
+                    <div class="coord">
+                        <span class="coord-label">lng</span>
+                        <span class="coord-valor" id="long">—</span>
+                    </div>
+                    <div class="coord">
+                        <span class="coord-label">precisão</span>
+                        <span class="coord-valor" id="acc">—</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="painel painel-ultima" id="ultimaCard">
+                <span class="painel-titulo">última localização salva</span>
+                <p class="ultima-valor" id="textoUltima">nada salvo ainda</p>
+            </section>
+
+            <section class="painel">
+                <span class="painel-titulo">limpar dados</span>
+                <p class="painel-desc">arraste o papel até a lixeira para apagar o localStorage</p>
+
+                <div class="drop-zone">
+                    <div class="papel" id="papel" draggable="true">
+                        <span class="papel-emoji">📄</span>
+                        <span class="papel-txt">papel</span>
+                    </div>
+
+                    <div class="lixeira" id="lixeira">
+                        <span class="lixeira-emoji">🗑️</span>
+                        <span class="lixeira-txt">lixeira</span>
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+
+    </main>
+
+    <footer class="footer">
+        <span>Atividade 4 · PFE</span>
+    </footer>
+
+    <script src="script.js"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQkVXohIi5briXsxDtLxC-vk3X9aXQkzU&callback=iniciarMapa">
+    </script>
+
+</body>
+</html>

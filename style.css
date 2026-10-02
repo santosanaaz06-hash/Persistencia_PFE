@@ -1,0 +1,408 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-1: #0b1020;
+    --bg-2: #131a35;
+    --card: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --accent: #00e0a4;
+    --accent-2: #00b3ff;
+    --danger: #ff4d6d;
+    --text: #e8ecf5;
+    --text-dim: #96a0b8;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(1200px 600px at 10% -10%, #1b2a5e 0%, transparent 60%),
+        radial-gradient(1000px 500px at 100% 0%, #0d3a3a 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+    padding: 24px;
+    overflow-x: hidden;
+}
+
+/* ============ TOPBAR ============ */
+.topbar {
+    max-width: 1300px;
+    margin: 0 auto 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 18px 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    backdrop-filter: blur(14px);
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+
+.brand-icon {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 0 12px var(--accent));
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.brand h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand p { font-size: 0.8rem; color: var(--text-dim); margin-top: 2px; }
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(0, 224, 164, 0.1);
+    border: 1px solid rgba(0, 224, 164, 0.3);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.status .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    animation: piscar 1.4s infinite;
+}
+
+.status.erro {
+    background: rgba(255, 77, 109, 0.1);
+    border-color: rgba(255, 77, 109, 0.4);
+    color: var(--danger);
+}
+.status.erro .dot { background: var(--danger); box-shadow: 0 0 10px var(--danger); }
+
+@keyframes piscar {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* ============ GRID ============ */
+.grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 22px;
+}
+
+.coluna-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* ============ CARDS ============ */
+.card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 22px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.card-header h2 { font-size: 1.1rem; font-weight: 700; }
+
+/* ============ MAPA ============ */
+.mapa-card { padding-bottom: 22px; }
+
+#map {
+    width: 100%;
+    height: 460px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0a0f1e;
+    border: 1px solid var(--card-border);
+}
+
+/* ============ BOTÃO ============ */
+.btn-primary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #06201b;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(0, 224, 164, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(0, 224, 164, 0.55);
+}
+
+.btn-primary:active { transform: scale(0.97); }
+
+/* ============ GPS CARD ============ */
+.gps-card {
+    background: linear-gradient(160deg, rgba(0, 30, 25, 0.9), rgba(0, 15, 30, 0.9));
+    border-color: rgba(0, 224, 164, 0.35);
+    box-shadow: 0 0 30px rgba(0, 224, 164, 0.15) inset,
+                0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.gps-topo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+}
+
+.gps-led {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    animation: piscar 1.2s infinite;
+}
+
+.gps-tela {
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gps-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(0, 224, 164, 0.06);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+}
+
+.gps-linha .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+}
+
+.gps-linha .valor {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0, 224, 164, 0.6);
+}
+
+/* ============ ÚLTIMA LOCALIZAÇÃO ============ */
+.ultima-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: linear-gradient(135deg, rgba(255, 200, 0, 0.1), rgba(255, 140, 0, 0.05));
+    border-left: 4px solid #ffc800;
+}
+
+.ultima-icone {
+    font-size: 2.4rem;
+    filter: drop-shadow(0 0 12px rgba(255, 200, 0, 0.6));
+}
+
+.ultima-texto h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffc800;
+    margin-bottom: 6px;
+}
+
+.ultima-texto p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: var(--text);
+    word-break: break-word;
+}
+
+.ultima-card.vazia { opacity: 0.55; border-left-color: var(--text-dim); }
+.ultima-card.vazia h3 { color: var(--text-dim); }
+
+/* ============ DRAG AND DROP ============ */
+.dnd-card { overflow: hidden; }
+
+.dnd-titulo { font-size: 1.05rem; margin-bottom: 6px; }
+
+.dnd-sub {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+}
+
+.dnd-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    min-height: 170px;
+}
+
+.papel {
+    background: linear-gradient(160deg, #ffffff, #e6ecf5);
+    color: #1a2233;
+    padding: 20px 16px;
+    border-radius: 12px;
+    width: 130px;
+    text-align: center;
+    cursor: grab;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35),
+                0 0 0 3px rgba(0, 179, 255, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s;
+    user-select: none;
+}
+
+.papel:hover { transform: translateY(-4px) rotate(-2deg); }
+
+.papel:active { cursor: grabbing; }
+
+.papel.arrastando {
+    opacity: 0.4;
+    transform: scale(0.9) rotate(6deg);
+}
+
+.papel-emoji { font-size: 2.6rem; display: block; }
+
+.papel-txt {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-top: 6px;
+    color: #4a5568;
+}
+
+.lixeira {
+    background: rgba(255, 77, 109, 0.08);
+    border: 3px dashed rgba(255, 77, 109, 0.5);
+    border-radius: 12px;
+    padding: 24px 18px;
+    width: 130px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.lixeira-emoji {
+    font-size: 2.8rem;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.lixeira-txt {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--danger);
+    margin-top: 6px;
+}
+
+.lixeira.over {
+    background: rgba(255, 77, 109, 0.25);
+    border-color: var(--danger);
+    border-style: solid;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 77, 109, 0.6);
+}
+
+.lixeira.over .lixeira-emoji {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+.lixeira.sucesso {
+    background: rgba(0, 224, 164, 0.25);
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(0, 224, 164, 0.6);
+}
+
+/* ============ MARCADOR CUSTOMIZADO DO MAPA ============ */
+.marcador-pulso {
+    position: relative;
+    width: 22px;
+    height: 22px;
+}
+
+.marcador-pulso::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 2px #fff, 0 0 20px var(--accent);
+}
+
+.marcador-pulso::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    animation: pulsar 1.8s infinite;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(0.7); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* ============ RESPONSIVO ============ */
+@media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+    #map { height: 340px; }
+}
+
+@media (max-width: 480px) {
+    body { padding: 14px; }
+    .topbar { padding: 14px 18px; }
+    .brand h1 { font-size: 1.15rem; }
+    .card { padding: 18px; }
+    #map { height: 280px; }
+}
